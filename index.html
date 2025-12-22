@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEXUS - A minimalist, futuristic todo list application for productive task management">
+  <meta name="keywords" content="todo, task manager, productivity, minimalist">
+  <meta name="author" content="NEXUS">
+  <meta name="theme-color" content="#212529">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="NEXUS Todo">
+  <meta property="og:description" content="Minimalist task management system">
+  <meta property="og:type" content="website">
+  
+  <title>NEXUS // Todo</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-dark">
+  
+  <!-- Auth Screen -->
+  <div id="authScreen" class="screen active">
+    <div class="auth-container">
+      <div class="auth-card">
+        <h1 class="app-title">NEXUS</h1>
+        <p class="app-subtitle">Task Management System</p>
+        
+        <!-- Theme Toggle -->
+        <div class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <div class="toggle-track">
+            <div class="toggle-thumb"></div>
+          </div>
+        </div>
+        
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-tab="login">Login</button>
+          <button class="auth-tab" data-tab="signup">Sign Up</button>
+        </div>
+        
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form active">
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input 
+              type="email" 
+              id="loginEmail" 
+              placeholder="Enter your email address" 
+              required
+              autocomplete="email"
+            >
+            <span class="input-error" id="loginEmailError"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input 
+              type="password" 
+              id="loginPassword" 
+              placeholder="Enter your password" 
+              required
+              autocomplete="current-password"
+            >
+            <span class="input-error" id="loginPasswordError"></span>
+          </div>
+          
+          <button type="submit" class="btn-primary">
+            <span>Access System</span>
+          </button>
+          
+          <div class="form-error" id="loginError"></div>
+        </form>
+        
+        <!-- Signup Form -->
+        <form id="signupForm" class="auth-form">
+          <div class="form-group">
+            <label for="signupEmail">Email</label>
+            <input 
+              type="email" 
+              id="signupEmail" 
+              placeholder="Enter your email address" 
+              required
+              autocomplete="email"
+            >
+            <span class="input-error" id="signupEmailError"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input 
+              type="password" 
+              id="signupPassword" 
+              placeholder="Create a strong password" 
+              required
+              autocomplete="new-password"
+            >
+            <span class="helper-text">Minimum 8 characters with uppercase, lowercase, number & special character</span>
+            <span class="input-error" id="signupPasswordError"></span>
+          </div>
+          
+          <button type="submit" class="btn-primary">
+            <span>Create Account</span>
+          </button>
+          
+          <div class="form-error" id="signupError"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Todo Screen -->
+  <div id="todoScreen" class="screen">
+    <div class="todo-container">
+      <div class="todo-card">
+        
+        <!-- Header -->
+        <div class="todo-header">
+          <div class="header-left">
+            <h1 class="app-title">NEXUS</h1>
+            <p class="user-email" id="userEmail"></p>
+          </div>
+          
+          <div class="header-right">
+            <!-- Theme Toggle -->
+            <div class="theme-toggle small" id="themeToggleTodo" aria-label="Toggle theme">
+              <div class="toggle-track">
+                <div class="toggle-thumb"></div>
+              </div>
+            </div>
+            
+            <button class="btn-ghost" id="logoutBtn">
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Add Task -->
+        <div class="add-task-section">
+          <form id="addTaskForm">
+            <div class="input-row">
+              <input 
+                type="text" 
+                id="taskInput" 
+                placeholder="Enter new task..." 
+                maxlength="500"
+                required
+              >
+              <button type="submit" class="btn-add">
+                <span>Add</span>
+              </button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Filters & Stats -->
+        <div class="filters-section">
+          <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All</button>
+            <button class="filter-tab" data-filter="active">Active</button>
+            <button class="filter-tab" data-filter="completed">Completed</button>
+          </div>
+          
+          <div class="stats">
+            <span id="taskCount">0 tasks</span>
+          </div>
+        </div>
+        
+        <!-- Tasks List -->
+        <div class="tasks-list" id="tasksList">
+          <!-- Tasks will be inserted here -->
+        </div>
+        
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">○</div>
+          <p>No tasks yet</p>
+          <span>Add your first task to get started</span>
+        </div>
+        
+        <!-- Loading State -->
+        <div class="loading-state" id="loadingState">
+          <div class="loader"></div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>
